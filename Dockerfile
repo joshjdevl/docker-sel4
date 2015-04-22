@@ -9,16 +9,18 @@ RUN add-apt-repository ppa:saiarcot895/myppa && \
 apt-get update && \
 apt-get -y install apt-fast
 
-RUN apt-fast -y install wget
+RUN apt-get clean && apt-fast update
+RUN apt-fast -y install wget curl
 
-RUN apt-fast -y install build-essential lib32z1 lib32ncurses5 lib32bz2-1.0 python python-pip python-tempita cabal-install realpath libxml2-utils qemu git python-jinja2 python-ply
+RUN apt-fast -y install build-essential git
+RUN apt-fast -y install libxml2-utils qemu realpath python python-pip python-tempita cabal-install realpath libxml2-utils qemu git python-jinja2 python-ply
+RUN apt-fast -y install lib32z1 lib32ncurses5 lib32bz2-1.0
 
-RUN pushd /tmp
+RUN cd /tmp
 RUN mkdir -p /opt/local
 RUN wget https://sourcery.mentor.com/public/gnu_toolchain/arm-none-eabi/arm-2013.11-24-arm-none-eabi-i686-pc-linux-gnu.tar.bz2
 RUN tar xf arm-2013.11-24-arm-none-eabi-i686-pc-linux-gnu.tar.bz2
 RUN mv arm-2013.11 /opt/local/
-RUN popd
 
 RUN pip install --user pyelftools
 
