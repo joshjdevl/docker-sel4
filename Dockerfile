@@ -1,6 +1,8 @@
 FROM ubuntu:trusty
 MAINTAINER josh < josh [at] gmail {dot} com>
 
+#http://sel4.systems/CAmkES/GettingStarted.pml#prerequisites
+
 RUN apt-get update && apt-get -y install python-software-properties software-properties-common && \
 add-apt-repository "deb http://gb.archive.ubuntu.com/ubuntu $(lsb_release -sc) universe" && \
 apt-get update
