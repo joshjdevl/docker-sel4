@@ -38,6 +38,9 @@ ENV PATH /opt/local/arm-2013.11/bin:$HOME/bin:$PATH
 
 RUN mkdir $HOME/camkes-project
 RUN cd $HOME/camkes-project
-#RUN $HOME/bin/repo init -u https://github.com/seL4/camkes-manifest.git
-#RUN $HOME/bin/repo sync
+RUN git config --global user.name "test"
+RUN git config --global user.email "test"
+RUN git config --global color.ui false 
+RUN cd $HOME/camkes-project && $HOME/bin/repo init -u https://github.com/seL4/camkes-manifest.git
+RUN cd $HOME/camkes-project && $HOME/bin/repo sync
 
