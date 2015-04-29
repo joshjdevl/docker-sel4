@@ -29,8 +29,15 @@ RUN pip install --user pyelftools
 RUN cabal update
 RUN cabal install MissingH data-ordlist split
 
-RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-RUN chmod a+x ~/bin/repo
+RUN mkdir -p $HOME/bin
+RUN curl https://storage.googleapis.com/git-repo-downloads/repo > $HOME/bin/repo
+RUN chmod a+x $HOME/bin/repo
 
-ENV PATH /opt/local/arm-2013.11/bin:~/bin:$PATH
+ENV PATH /opt/local/arm-2013.11/bin:$HOME/bin:$PATH
+
+
+RUN mkdir $HOME/camkes-project
+RUN cd $HOME/camkes-project
+#RUN $HOME/bin/repo init -u https://github.com/seL4/camkes-manifest.git
+#RUN $HOME/bin/repo sync
 
